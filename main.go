@@ -5,9 +5,29 @@ import (
 	"fmt"
 	"net/http"
 	"time"
+
+	"github.com/getcasa/sdk"
 )
 
 func main() {}
+
+var Config = sdk.Configuration{
+	Name:        "request",
+	Version:     "1.0.0",
+	Author:      "amoinier",
+	Description: "request",
+	Main:        "request",
+	FuncData:    "onData",
+	Triggers:    []sdk.Trigger{},
+	Actions: []sdk.Action{
+		sdk.Action{
+			Name: "get",
+		},
+		sdk.Action{
+			Name: "post",
+		},
+	},
+}
 
 // Params define actions parameters available
 type Params struct {
@@ -50,4 +70,8 @@ func CallAction(name string, params []byte) {
 	default:
 		return
 	}
+}
+
+// OnStop close connection
+func OnStop() {
 }
