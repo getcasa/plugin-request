@@ -21,10 +21,12 @@ var Config = sdk.Configuration{
 	Triggers:    []sdk.Trigger{},
 	Actions: []sdk.Action{
 		sdk.Action{
-			Name: "get",
+			Name:   "get",
+			Fields: []string{"Link"},
 		},
 		sdk.Action{
-			Name: "post",
+			Name:   "post",
+			Fields: []string{"Link", "CtnType", "Values"},
 		},
 	},
 }
