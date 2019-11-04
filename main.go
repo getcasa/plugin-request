@@ -11,6 +11,7 @@ import (
 
 func main() {}
 
+// Config set the plugin config
 var Config = sdk.Configuration{
 	Name:        "request",
 	Version:     "1.0.0",
@@ -18,15 +19,38 @@ var Config = sdk.Configuration{
 	Description: "request",
 	Main:        "request",
 	FuncData:    "onData",
+	Discover:    true,
 	Triggers:    []sdk.Trigger{},
 	Actions: []sdk.Action{
 		sdk.Action{
-			Name:   "get",
-			Fields: []string{"Link"},
+			Name: "get",
+			Fields: []sdk.Field{
+				sdk.Field{
+					Name:   "Link",
+					Type:   "string",
+					Config: true,
+				},
+			},
 		},
 		sdk.Action{
-			Name:   "post",
-			Fields: []string{"Link", "CtnType", "Values"},
+			Name: "post",
+			Fields: []sdk.Field{
+				sdk.Field{
+					Name:   "Link",
+					Type:   "string",
+					Config: true,
+				},
+				sdk.Field{
+					Name:   "CtnType",
+					Type:   "string",
+					Config: true,
+				},
+				sdk.Field{
+					Name:   "Values",
+					Type:   "string",
+					Config: true,
+				},
+			},
 		},
 	},
 }
