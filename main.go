@@ -85,6 +85,7 @@ func CallAction(name string, params []byte) {
 	err := json.Unmarshal(params, &req)
 	if err != nil {
 		fmt.Println(err)
+		return
 	}
 
 	// use name to call actions
