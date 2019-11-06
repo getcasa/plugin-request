@@ -64,15 +64,20 @@ type Params struct {
 
 var client http.Client
 
+// Init
+func Init() []byte {
+	return []byte{}
+}
+
 // OnStart create http client
-func OnStart() {
+func OnStart(config []byte) {
 	client = http.Client{
 		Timeout: time.Second * 5,
 	}
 }
 
 // CallAction call functions from actions
-func CallAction(name string, params []byte) {
+func CallAction(name string, params []byte, config []byte) {
 	if string(params) == "" {
 		fmt.Println("Params must be provided")
 		return
