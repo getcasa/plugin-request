@@ -78,7 +78,7 @@ func OnStart(config []byte) {
 
 // CallAction call functions from actions
 func CallAction(name string, params []byte, config []byte) {
-	if string(params) == "" {
+	if string(config) == "" {
 		fmt.Println("Params must be provided")
 		return
 	}
@@ -87,7 +87,7 @@ func CallAction(name string, params []byte, config []byte) {
 	var req Params
 
 	// unmarshal parameters to use in actions
-	err := json.Unmarshal(params, &req)
+	err := json.Unmarshal(config, &req)
 	if err != nil {
 		fmt.Println(err)
 		return
