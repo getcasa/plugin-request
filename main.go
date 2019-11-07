@@ -16,10 +16,7 @@ var Config = sdk.Configuration{
 	Name:        "request",
 	Version:     "1.0.0",
 	Author:      "amoinier",
-	Description: "request",
-	Main:        "request",
-	FuncData:    "onData",
-	Discover:    true,
+	Description: "Send request",
 	Triggers:    []sdk.Trigger{},
 	Actions: []sdk.Action{
 		sdk.Action{
@@ -55,19 +52,14 @@ var Config = sdk.Configuration{
 	},
 }
 
-// Params define actions parameters available
-type Params struct {
+// ConfigDevice define actions parameters available
+type ConfigDevice struct {
 	Link    string
 	CtnType string
 	Values  string
 }
 
 var client http.Client
-
-// Init
-func Init() []byte {
-	return []byte{}
-}
 
 // OnStart create http client
 func OnStart(config []byte) {
@@ -84,10 +76,10 @@ func CallAction(physicalID string, name string, params []byte, config []byte) {
 	}
 
 	// declare parameters
-	var req Params
+	var conf ConfigDevice
 
 	// unmarshal parameters to use in actions
-	err := json.Unmarshal(config, &req)
+	err := json.Unmarshal(config, &conf)
 	if err != nil {
 		fmt.Println(err)
 		return
@@ -96,9 +88,9 @@ func CallAction(physicalID string, name string, params []byte, config []byte) {
 	// use name to call actions
 	switch name {
 	case "get":
-		Get(req.Link)
+		Get(conf.Link)
 	case "post":
-		Post(req.Link, req.CtnType, req.Values)
+		Post(conf.Link, conf.CtnType, conf.Values)
 	default:
 		return
 	}
