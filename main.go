@@ -77,7 +77,7 @@ func OnStart(config []byte) {
 }
 
 // CallAction call functions from actions
-func CallAction(name string, params []byte, config []byte) {
+func CallAction(physicalID string, name string, params []byte, config []byte) {
 	if string(config) == "" {
 		fmt.Println("Params must be provided")
 		return
