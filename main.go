@@ -17,7 +17,15 @@ var Config = sdk.Configuration{
 	Version:     "1.0.0",
 	Author:      "amoinier",
 	Description: "Send request",
-	Triggers:    []sdk.Trigger{},
+	Devices: []sdk.Device{
+		sdk.Device{
+			Name:           "get",
+			DefaultTrigger: "",
+			DefaultAction:  "",
+			Triggers:       []sdk.Trigger{},
+			Actions:        []string{"get"},
+		},
+	},
 	Actions: []sdk.Action{
 		sdk.Action{
 			Name: "get",
