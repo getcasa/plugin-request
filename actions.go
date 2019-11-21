@@ -26,9 +26,12 @@ func Get(link string) ([]byte, error) {
 
 // Post is a function to do a post request
 func Post(link string, ctnType string, values string) ([]byte, error) {
+	if ctnType == "" {
+		ctnType = "application/json"
+	}
 	fmt.Println("Do post request")
 	req, err := http.NewRequest("POST", link, bytes.NewBuffer([]byte(values)))
-	req.Header.Set("Content-Type", "application/json")
+	req.Header.Set("Content-Type", ctnType)
 	resp, err := client.Do(req)
 	if err != nil {
 		return nil, err

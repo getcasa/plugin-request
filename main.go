@@ -21,9 +21,16 @@ var Config = sdk.Configuration{
 		sdk.Device{
 			Name:           "get",
 			DefaultTrigger: "",
-			DefaultAction:  "",
+			DefaultAction:  "get",
 			Triggers:       []sdk.Trigger{},
 			Actions:        []string{"get"},
+		},
+		sdk.Device{
+			Name:           "post",
+			DefaultTrigger: "",
+			DefaultAction:  "post",
+			Triggers:       []sdk.Trigger{},
+			Actions:        []string{"post"},
 		},
 	},
 	Actions: []sdk.Action{
