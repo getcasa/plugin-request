@@ -17,41 +17,43 @@ var Config = sdk.Configuration{
 	Version:     "1.0.0",
 	Author:      "amoinier",
 	Description: "Send request",
+	Discover:    false,
 	Devices: []sdk.Device{
 		sdk.Device{
 			Name:           "get",
 			DefaultTrigger: "",
 			DefaultAction:  "get",
-			Triggers:       []sdk.Trigger{},
-			Actions:        []string{"get"},
+			Config: []sdk.DeviceConfig{
+				sdk.DeviceConfig{
+					Name: "Link",
+					Type: "string",
+				},
+			},
+			Triggers: []sdk.Trigger{},
+			Actions:  []string{"get"},
 		},
 		sdk.Device{
 			Name:           "post",
 			DefaultTrigger: "",
 			DefaultAction:  "post",
-			Triggers:       []sdk.Trigger{},
-			Actions:        []string{"post"},
+			Config: []sdk.DeviceConfig{
+				sdk.DeviceConfig{
+					Name: "Link",
+					Type: "string",
+				},
+			},
+			Triggers: []sdk.Trigger{},
+			Actions:  []string{"post"},
 		},
 	},
 	Actions: []sdk.Action{
 		sdk.Action{
-			Name: "get",
-			Fields: []sdk.Field{
-				sdk.Field{
-					Name:   "Link",
-					Type:   "string",
-					Config: true,
-				},
-			},
+			Name:   "get",
+			Fields: []sdk.Field{},
 		},
 		sdk.Action{
 			Name: "post",
 			Fields: []sdk.Field{
-				sdk.Field{
-					Name:   "Link",
-					Type:   "string",
-					Config: true,
-				},
 				sdk.Field{
 					Name:   "CtnType",
 					Type:   "string",
@@ -67,9 +69,13 @@ var Config = sdk.Configuration{
 	},
 }
 
-// ConfigDevice define actions parameters available
+// ConfigDevice define config for device
 type ConfigDevice struct {
-	Link    string
+	Link string
+}
+
+// Params define action parameters available
+type Params struct {
 	CtnType string
 	Values  string
 }
@@ -85,27 +91,25 @@ func OnStart(config []byte) {
 
 // CallAction call functions from actions
 func CallAction(physicalID string, name string, params []byte, config []byte) {
-	if string(config) == "" {
+	if string(params) == "" {
 		fmt.Println("Params must be provided")
-		return
+	}
+	if string(config) == "" {
+		fmt.Println("Configs must be provided")
 	}
 
-	// declare parameters
 	var conf ConfigDevice
+	var marshalParam Params
 
-	// unmarshal parameters to use in actions
-	err := json.Unmarshal(config, &conf)
-	if err != nil {
-		fmt.Println(err)
-		return
-	}
+	json.Unmarshal(config, &conf)
+	json.Unmarshal(params, &marshalParam)
 
 	// use name to call actions
 	switch name {
 	case "get":
 		Get(conf.Link)
 	case "post":
-		Post(conf.Link, conf.CtnType, conf.Values)
+		Post(conf.Link, marshalParam.CtnType, marshalParam.Values)
 	default:
 		return
 	}
