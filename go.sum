@@ -4,3 +4,5 @@ github.com/getcasa/sdk v0.0.0-20190923145410-20bbee062dc8 h1:Ssm7BqTzzvdj0ZsvZ2b
 github.com/getcasa/sdk v0.0.0-20190923145410-20bbee062dc8/go.mod h1:mjoGAmjNYGGUiTi3/4sEY5+MnOLcnaGV4evYJ6+5o4g=
 github.com/getcasa/sdk v0.0.0-20191105095754-6df142bc28a9 h1:l236hjCXqbA6Y3tHFw7IH3xpSsESYW505mUP0tcR4Lo=
 github.com/getcasa/sdk v0.0.0-20191105095754-6df142bc28a9/go.mod h1:mjoGAmjNYGGUiTi3/4sEY5+MnOLcnaGV4evYJ6+5o4g=
+github.com/getcasa/sdk v0.0.0-20191122192853-83858676b651 h1:sUsI+wCvLNu7aOIoUShbgLW4RGEeKUtqlxZiZrvf9H8=
+github.com/getcasa/sdk v0.0.0-20191122192853-83858676b651/go.mod h1:mjoGAmjNYGGUiTi3/4sEY5+MnOLcnaGV4evYJ6+5o4g=
